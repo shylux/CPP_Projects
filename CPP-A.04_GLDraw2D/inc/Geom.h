@@ -18,11 +18,18 @@ version: 1.01
 
 
 
+class CShape
+{
+public:
+	virtual void draw() = 0;
+	virtual void list() = 0;
+};
+
 ///////////////////////////////////////////////////////////////////////////////
 // class:   CPoint
 // purpose: declare a two dimensional point
 ///////////////////////////////////////////////////////////////////////////////
-class CPoint
+class CPoint: public CShape
 {
 	// friend declarations
 	friend class CLine;
@@ -55,7 +62,7 @@ public: // functions
 // class:   CLine
 // purpose: declare a two dimensional line
 ///////////////////////////////////////////////////////////////////////////////
-class CLine
+class CLine: public CShape
 {
 private:
 	CPoint _P1;

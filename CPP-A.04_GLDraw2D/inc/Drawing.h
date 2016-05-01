@@ -15,17 +15,22 @@ version: 1.01
 // system includes ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
+#include "Geom.h"
+#include <list>
+
 using namespace std;
 
 
 
 // forward declaration ////////////////////////////////////////////////////////
+class CShape;
 class CPoint;
 
 
-class CDrawing
+class CDrawing {
 ///////////////////////////////////////////////////////////////////////////////
-{
+static list<CShape*> shapes;
+
 public: // types
 	enum EViewMode { VIEW_DRAWING, VIEW_LISTING };
 	enum EFigType { FIG_POINT=0x00, FIG_LINE=0x10, FIG_RECT=0x20, FIG_CIRCLE=0x30 };

@@ -26,7 +26,7 @@ using namespace std;
 #include "../../_COMMON/inc/UtilFLTK.h"
 #include "../inc/Drawing.h"
 #include "../inc/CmdHandler.h"
-
+#include "../inc/Geom.h"
 
 
 void glutDisplayCB(void)
@@ -159,6 +159,9 @@ int main(int argc, char** argv)
 	CCmdHandler::initCmdHandler();
 	CCmdHandler::glutInitMenu();
 
+
+	CPoint* p1 = new CPoint(0, 0);
+	p1->draw();
 
 	try
 	{

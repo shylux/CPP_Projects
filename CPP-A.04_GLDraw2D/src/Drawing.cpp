@@ -13,6 +13,8 @@ history: 1.00 - initial version of OpenGL drawing application
 
 // system includes ////////////////////////////////////////////////////////////
 #include <iostream>
+#include <list>
+
 using namespace std;
 
 
@@ -25,8 +27,7 @@ using namespace std;
 
 
 // static data definitions ////////////////////////////////////////////////////
-
-
+list<CShape*> CDrawing::shapes;
 
 ///////////////////////////////////////////////////////////////////////////////
 // function: displayDrawing()
@@ -37,16 +38,19 @@ using namespace std;
 void CDrawing::displayDrawing( EViewMode mode )
 ///////////////////////////////////////////////////////////////////////////////
 {
-	// TODO: insert code to draw and list figures
 
 	// check for viewing mode
 	if ( mode == VIEW_DRAWING )
 	{
-		// TODO: add code here to draw objects
+        for (list<CShape*>::iterator shapei = shapes.begin(); shapei != shapes.end(); ++shapei) {
+            (*shapei)->draw();
+        }
 	}
 	else // VIEW_LISTING
 	{
-		// TODO: add code here to list objects
+        for (list<CShape*>::iterator shapei = shapes.begin(); shapei != shapes.end(); ++shapei) {
+            (*shapei)->list();
+        }
 	}
 }
 // CDrawing::displayDrawing() /////////////////////////////////////////////////
@@ -62,7 +66,7 @@ void CDrawing::displayDrawing( EViewMode mode )
 void CDrawing::clearDrawing( void )
 ///////////////////////////////////////////////////////////////////////////////
 {
-	// TODO: insert code to clear drawing data
+    while (!shapes.empty()) delete shapes.front(); shapes.pop_front();
 }
 // CDrawing::clearDrawing() ///////////////////////////////////////////////////
 
@@ -78,7 +82,18 @@ void CDrawing::clearDrawing( void )
 void CDrawing::appendFigure(EFigType figtype, const CPoint& p1, const CPoint& p2)
 ///////////////////////////////////////////////////////////////////////////////
 {
-	// TODO: add code to append figure to list
+    cout << "appendFigure" << endl;
+
+    switch (figtype) {
+        case FIG_POINT:
+            shapes.push_back(new CPoint(p1));
+            break;
+        case FIG_LINE:
+            shapes.push_back(new CLine(p1, p2));
+            break;
+        default:
+            break;
+    }
 }
 // CDrawing::appendFigure() ///////////////////////////////////////////////////
 
@@ -92,7 +107,7 @@ void CDrawing::appendFigure(EFigType figtype, const CPoint& p1, const CPoint& p2
 void CDrawing::removeFigure( void )
 ///////////////////////////////////////////////////////////////////////////////
 {
-	// TODO: add code to remove figure from list
+//    points.pop_back();
 }
 // CDrawing::removeFigure() ///////////////////////////////////////////////////
 
