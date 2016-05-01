@@ -53,6 +53,7 @@ public: // functions
 	void set( float x, float y ) { CPoint::x = x; CPoint::y = y; }
 	void list( void );
 	void draw( void );
+    float distance(const CPoint* point) const;
 	static void listCount( void ) 
 		{ cout << "Count of points: " << ulCount << endl; }
 };
@@ -91,7 +92,7 @@ public: // functions
 // class:   CRect
 // purpose: declare a rectangle
 ///////////////////////////////////////////////////////////////////////////////
-class CRect
+class CRect: public CShape
 {
 private:
    CPoint _P1;
@@ -119,7 +120,7 @@ public: // functions
 // class:   CCircle
 // purpose: declare a circle
 ///////////////////////////////////////////////////////////////////////////////
-class CCircle
+class CCircle: public CShape
 {
 private:
    CPoint _P1;

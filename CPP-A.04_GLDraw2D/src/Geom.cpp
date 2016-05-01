@@ -13,6 +13,7 @@ history: 1.00 - initial version of OpenGL drawing application
 #include <math.h>
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 using namespace std;
 
 
@@ -60,6 +61,10 @@ void CPoint::list( void )
 	cout << "CPoint : " << "Px=" << x << " Py=" << y << endl;
 }
 
+
+float CPoint::distance(const CPoint* point) const {
+	return sqrt(pow(this->x - point->x, 2) + pow(this->y - point->y, 2));
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // class:    CPoint

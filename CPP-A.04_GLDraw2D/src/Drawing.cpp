@@ -66,7 +66,10 @@ void CDrawing::displayDrawing( EViewMode mode )
 void CDrawing::clearDrawing( void )
 ///////////////////////////////////////////////////////////////////////////////
 {
-    while (!shapes.empty()) delete shapes.front(); shapes.pop_front();
+    while (!shapes.empty()) {
+        delete shapes.front();
+        shapes.pop_front();
+    }
 }
 // CDrawing::clearDrawing() ///////////////////////////////////////////////////
 
@@ -82,8 +85,6 @@ void CDrawing::clearDrawing( void )
 void CDrawing::appendFigure(EFigType figtype, const CPoint& p1, const CPoint& p2)
 ///////////////////////////////////////////////////////////////////////////////
 {
-    cout << "appendFigure" << endl;
-
     switch (figtype) {
         case FIG_POINT:
             shapes.push_back(new CPoint(p1));
@@ -91,6 +92,13 @@ void CDrawing::appendFigure(EFigType figtype, const CPoint& p1, const CPoint& p2
         case FIG_LINE:
             shapes.push_back(new CLine(p1, p2));
             break;
+        case FIG_RECT:
+            shapes.push_back(new CRect(p1, p2));
+            break;
+        case FIG_CIRCLE: {
+            shapes.push_back(new CCircle(p1, p1.distance(&p2)));
+            break;
+        }
         default:
             break;
     }
@@ -107,7 +115,8 @@ void CDrawing::appendFigure(EFigType figtype, const CPoint& p1, const CPoint& p2
 void CDrawing::removeFigure( void )
 ///////////////////////////////////////////////////////////////////////////////
 {
-//    points.pop_back();
+    delete shapes.back();
+    shapes.pop_back();
 }
 // CDrawing::removeFigure() ///////////////////////////////////////////////////
 
