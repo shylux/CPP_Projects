@@ -70,6 +70,7 @@ void CDrawing::clearDrawing( void )
         delete shapes.front();
         shapes.pop_front();
     }
+    CShape::printObjCount();
 }
 // CDrawing::clearDrawing() ///////////////////////////////////////////////////
 
@@ -102,6 +103,7 @@ void CDrawing::appendFigure(EFigType figtype, const CPoint& p1, const CPoint& p2
         default:
             break;
     }
+    CShape::printObjCount();
 }
 // CDrawing::appendFigure() ///////////////////////////////////////////////////
 

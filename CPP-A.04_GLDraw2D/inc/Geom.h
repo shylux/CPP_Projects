@@ -23,6 +23,12 @@ class CShape
 public:
 	virtual void draw() = 0;
 	virtual void list() = 0;
+    static void printObjCount() {
+        cout << "Object count: " << objCount() << endl;
+    }
+    static int objCount() {
+        return CPoint::ulCount + CLine::ulCount + CRect::ulCount + CCircle::ulCount;
+    }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -32,6 +38,7 @@ public:
 class CPoint: public CShape
 {
 	// friend declarations
+    friend class CShape;
 	friend class CLine;
 	friend class CRect;
 	friend class CCircle;
@@ -65,6 +72,8 @@ public: // functions
 ///////////////////////////////////////////////////////////////////////////////
 class CLine: public CShape
 {
+    friend class CShape;
+
 private:
 	CPoint _P1;
 	CPoint _P2;
@@ -94,6 +103,7 @@ public: // functions
 ///////////////////////////////////////////////////////////////////////////////
 class CRect: public CShape
 {
+    friend class CShape;
 private:
    CPoint _P1;
    CPoint _P2;
@@ -122,6 +132,7 @@ public: // functions
 ///////////////////////////////////////////////////////////////////////////////
 class CCircle: public CShape
 {
+    friend class CShape;
 private:
    CPoint _P1;
    float _Radius;
